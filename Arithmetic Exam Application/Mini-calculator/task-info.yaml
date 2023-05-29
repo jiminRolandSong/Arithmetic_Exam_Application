@@ -1,0 +1,56 @@
+type: edu
+files:
+- name: test/__init__.py
+  visible: false
+  learner_created: false
+- name: test/tests.py
+  visible: false
+  text: |
+    from hstest import StageTest, TestedProgram, CheckResult, dynamic_test
+
+
+    class ExamTest(StageTest):
+        @dynamic_test
+        def test_sum(self):
+            pr = TestedProgram()
+            pr.start()
+            output = pr.execute("5 + 2").lower().strip()
+            check = output == "7" or output == "7.0"
+            return CheckResult(check, 'Wrong result found for "+" operation.')
+
+        @dynamic_test
+        def test_mult(self):
+            pr = TestedProgram()
+            pr.start()
+            output = pr.execute("11 * 3").lower().strip()
+            check = output == "33" or output == "33.0"
+            return CheckResult(check, 'Wrong result found for "*" operation.')
+
+        @dynamic_test
+        def test_substraction(self):
+            pr = TestedProgram()
+            pr.start()
+            output = pr.execute("10 - 3").lower().strip()
+            check = output == "7" or output == "7.0"
+            return CheckResult(check, 'Wrong result found for "-" operation.')
+
+
+    if __name__ == '__main__':
+        ExamTest().run_tests()
+  learner_created: false
+- name: arithmetic.py
+  visible: true
+  text: |
+    # write your code here
+  learner_created: false
+- name: tests.py
+  visible: false
+  text: |
+    from test.tests import ExamTest
+
+    if __name__ == '__main__':
+        ExamTest().run_tests()
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/12802#comment
+status: Solved
+record: 1
